@@ -26,7 +26,6 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.items)
   }
 
   initUpdateForms(){
@@ -40,7 +39,6 @@ export class HomepageComponent implements OnInit {
         })
       )
     }
-    console.log('Form is initialized...');
     return bucketListItems;
   }
 
