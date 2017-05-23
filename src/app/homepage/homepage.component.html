@@ -1,28 +1,31 @@
-<div *ngIf="items">
+<form *ngIf="items" [formGroup]="updateForm" novalidate>
 
-  <div class="panel panel-default" *ngFor="let item of items; let i = index">
+  <div class="panel panel-default" *ngFor="let item of items; let i = index" formArrayName="bucketListItems">
     <div class="panel-body">
       {{ item.title}}
       <span class="remove" (click)="deleteItem(item.$key)">X</span>
       <span class="edit" (click)="toggle[i] = !toggle[i]">edit</span>
 
-      <form (ngSubmit)="updateItem(item.$key, item.title)" novalidate *ngIf="toggle[i]">
-        <fieldset>
-          <legend>Update item</legend>
+      <fieldset *ngIf="toggle[i]" [formArrayName]="i">
 
-          <div class="form-group">
-            <label for="inputTitle" class="col-md-2 control-label">Titel</label>
-            <input type="text" class="form-control" id="inputTitle" name="title-{{i}}" [value]="item.title" [(ngModel)]="item.title">
-          </div>
+        <!--<pre>{{ updateForm.value | json }}</pre>-->
+        <!--<pre>{{ updateForm.controls.bucketListItems.controls[i].controls.value | json}}</pre>-->
+        <!--<pre>{{ updateForm.get('bucketListItems.'+i).value | json}}</pre>-->
+        <!--<pre>{{ updateForm.get('bucketListItems').value | json}}</pre>-->
 
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </fieldset>
-      </form>
+        <legend>Update item</legend>
+        <div class="form-group">
+          <label for="inputTitle" class="col-md-2 control-label">Titel</label>
+          <input type="text" class="form-control" id="inputTitle" name="newTitle" formControlName="newTitle">
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary" (click)="updateItem(item.$key, updateForm.get('bucketListItems.'+i).value)">Submit</button>
+        </div>
+      </fieldset>
 
     </div>
   </div>
 
-</div>
+</form>
 

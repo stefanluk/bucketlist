@@ -18,10 +18,9 @@ export class ItemService {
     this.router.navigate([''])
   }
 
-  updateItem(key: string, title) {
-    console.log(title);
+  updateItem(key: string, item) {
     this.items.update(key, {
-      title: title
+      title: item.newTitle
     });
   }
 
