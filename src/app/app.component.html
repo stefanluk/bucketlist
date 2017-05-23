@@ -1,0 +1,18 @@
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" [routerLink]="['']">MyBucketlist</a>
+    </div>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li><a [routerLink]="['/add']" class="navbar-link">Add item</a></li>
+      <li><a  class="navbar-link"(click)="logOut()">Log out</a></li>
+    </ul>
+
+  </div><!-- /.container-fluid -->
+</div>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
