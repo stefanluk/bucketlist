@@ -42,8 +42,9 @@ export class HomepageComponent implements OnInit {
     return bucketListItems;
   }
 
-  updateItem(key, title){
+  updateItem(key, title, i){
     this.itemService.updateItem(key, title);
+    this.toggle[i] = !this.toggle[i];
   }
 
   deleteItem(key: string) {
